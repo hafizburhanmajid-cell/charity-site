@@ -1,100 +1,125 @@
-*{
+/* --- Global Reset --- */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #fdf8f2;
 }
-header{
+
+/* --- Header & Navbar (Responsive without media queries) --- */
+header {
     width: 100%;
     background-color: #d9531e;
-    padding: 20px 0;
+    padding: clamp(15px, 3vw, 20px) 0; /* Responsive padding */
     position: sticky;
     top: 0;
     z-index: 100;
 }
-.header-container{
+
+.header-container {
     width: 90%;
     margin: 0 auto;
     display: flex;
+    flex-wrap: wrap; /* Choti screen par items ko neeche bhejega */
     justify-content: space-between;
     align-items: center;
+    gap: 15px; /* Wrap hone par gap dega */
 }
-.logo img{
+
+.logo img {
     width: 50px;
     height: 50px;
     background: white;
     border-radius: 50%;
     padding: 5px;
 }
-nav{
+
+nav {
     display: flex;
+    flex-wrap: wrap; /* Links ko wrap karega */
     align-items: center;
-    gap: 40px;
+    gap: 20px; /* 40px se kam kar diya taaki mobile par fit ho */
 }
-nav ul{
+
+nav ul {
     display: flex;
+    flex-wrap: wrap;
     list-style: none;
-    gap: 30px;
+    gap: 15px; /* 30px se kam kar diya */
 }
-nav ul li{
+
+nav ul li {
     text-decoration: none;
     color: #fff;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px); /* Responsive font size */
     cursor: pointer;
     transition: opacity 0.3s;
 }
-nav ul li:hover{
+
+nav ul li:hover {
     opacity: 0.8;
 }
-.nav-right{
+
+.nav-right {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
-.search{
+
+.search {
     font-size: 20px;
     color: white;
     cursor: pointer;
 }
-.buttons{
+
+.buttons {
     display: flex;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
-.buttons button{
+
+.buttons button {
     padding: 10px 20px;
     border: none;
     background: white;
     color: #d9531e;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: clamp(13px, 2vw, 15px); /* Responsive font */
     font-weight: 600;
-    transition: all 0.2s ease;
+    transition: top 0.3s ease;
     position: relative;
     top: 0;
 }
-.buttons button:hover{
-     top: -2px;
+
+.buttons button:hover {
+    top: -2px; /* Smooth hover effect */
 }
-.hero{
+
+/* --- Hero Section (Responsive without media queries) --- */
+.hero {
     width: 90%;
-    margin: 70px auto;
+    margin: 40px auto; /* 70px se kam kiya */
     display: flex;
+    flex-wrap: wrap; /* Content aur Image ko stack karega */
     justify-content: space-between;
     align-items: center;
-    min-height: 700px;
+    min-height: auto; /* 700px hata diya, ab content ke hisaab se height legi */
     position: relative;
-    padding: 80px 60px;
+    padding: clamp(40px, 8vw, 80px) clamp(20px, 5vw, 60px); /* Responsive padding */
     background-image: url('images/world-map.png');
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
+    background-size: contain; /* Cover ki jagah contain taaki map cut na ho */
     background-color: #fdf8f2; 
 }
-.hero::before{
+
+.hero::before {
     content: '';
     position: absolute;
     top: 0;
@@ -104,72 +129,85 @@ nav ul li:hover{
     background-color: rgba(253, 248, 242, 0.85);
     z-index: 0;
 }
-.hero-content{
-    width: 50%;
+
+/* Hero Text Content */
+.hero-content {
+    flex: 1 1 350px; /* 50% width hata kar flexible bana diya */
     position: relative;
     z-index: 1;
+    margin-bottom: 40px;
 }
-.hero-content h1{
-    font-size: 55px;
-    line-height: 65px;
+
+.hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem); /* 55px ki jagah responsive clamp */
+    line-height: 1.2; /* 65px ki jagah relative line-height */
     margin-bottom: 25px;
     color: #222;
     font-weight: 700;
 }
-.hero-content p{
-    font-size: 18px;
-    line-height: 30px;
+
+.hero-content p {
+    font-size: clamp(1rem, 2vw, 1.125rem); /* 18px ki jagah responsive clamp */
+    line-height: 1.6; /* 30px ki jagah relative */
     color: #666;
     margin-bottom: 35px;
 }
-.hero-content button{
+
+.hero-content button {
     padding: 15px 35px;
     background: #d9531e;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     transition: background 0.3s;
 }
-.hero-content button:hover{
+
+.hero-content button:hover {
     background: #c44a1a;
 }
-.hero-image{
-    width: 45%;
+
+/* Hero Images (4 Strips) */
+.hero-image {
+    flex: 1 1 300px; /* 45% width hata kar flexible bana diya */
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     position: relative;
     z-index: 1;
+    margin-bottom: 40px;
 }
-.image-strip{
-    width: 80px;
+
+.image-strip {
+    width: 50px; /* 80px se patla kar diya (Thinner) */
+    flex: 0 0 50px; /* Stretch hone se rokne ke liye */
     overflow: hidden;
-    border-radius: 40px;
-    flex: 1;
+    border-radius: 25px; /* Width aadhi karne se radius bhi aadha kiya */
 }
-.image-strip img{
+
+.image-strip img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
-.image-strip:nth-child(1){
+
+.image-strip:nth-child(1) {
     height: 300px;
     margin-top: 50px;
 }
-.image-strip:nth-child(2){
+.image-strip:nth-child(2) {
     height: 450px;
 }
-.image-strip:nth-child(3){
+.image-strip:nth-child(3) {
     height: 450px;
 }
-.image-strip:nth-child(4){
+.image-strip:nth-child(4) {
     height: 300px;
     margin-top: 50px;
 }
